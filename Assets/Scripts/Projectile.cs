@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private float lifetime = 2f;
+    [SerializeField] private float lifetime = 3f;
     [SerializeField] private float ShotSpeed = .1f;
 
     private Ray TargetLine = new Ray();

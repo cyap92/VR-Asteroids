@@ -7,7 +7,7 @@ public class InputManager : MonoBehaviour
 {
     private GameManager gameManager;
 
-    public void Awake()
+    public void Start()
     {
         gameManager = GameManager.instance;
         if (gameManager == null)

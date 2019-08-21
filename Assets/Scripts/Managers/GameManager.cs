@@ -6,8 +6,9 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] Gun LeftGun;
     [SerializeField] Gun RightGun;
-
     [SerializeField] InputManager inputManager;
+
+    public bool isPlaying = true;
 
     public static GameManager instance;
 
