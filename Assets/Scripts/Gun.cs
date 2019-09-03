@@ -10,6 +10,9 @@ public class Gun : MonoBehaviour
     [SerializeField]
     GameObject ProjectilePrefab;
 
+    [SerializeField]
+    AudioSource audioSource;
+
     public void Fire()
     {
         GameObject projectileGO = Instantiate(ProjectilePrefab);
@@ -19,5 +22,6 @@ public class Gun : MonoBehaviour
         projectile.transform.localRotation = transform.localRotation;
         projectile.transform.parent = null;
         projectile.SetTargetLine(new Ray(projectile.transform.position, projectile.transform.rotation * Vector3.forward));
+        audioSource.PlayOneShot(audioSource.clip);
     }
 }

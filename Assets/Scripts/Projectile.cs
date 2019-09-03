@@ -18,6 +18,8 @@ public class Projectile : MonoBehaviour
 
     private void OnEnable()
     {
+
+        
         StartCoroutine(DestroyAfterSeconds(lifetime));
     }
 
@@ -36,5 +38,13 @@ public class Projectile : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
     }
 }
