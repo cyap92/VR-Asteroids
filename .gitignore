@@ -4,6 +4,7 @@
 [Bb]uild/
 [Bb]uilds/
 [Ll]ogs/
+[Mm]edia/
 
 # Never ignore Asset meta data
 ![Aa]ssets/**/*.meta
@@ -52,3 +53,4 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+
