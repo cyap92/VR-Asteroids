@@ -1,0 +1,1 @@
+VR Asteroids is a simple game played with a Virtual reality headset and two openvr controllers. The object of the game is to prevent the falling asteroids from hitting your platform by shooting them with two handheld guns.  
