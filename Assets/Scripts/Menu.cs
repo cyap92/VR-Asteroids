@@ -11,9 +11,9 @@ public class Menu : MonoBehaviour
     [SerializeField] private TMP_Text startGameText;
     [SerializeField] private TMP_Text intstructionsText;
 
-    private static string startGameString = "Squeeze Both Triggers to Begin!"+ Environment.NewLine + Environment.NewLine+"Hit ESC to Quit";
-    private static string instructionsString = "Destroy the asteroids before they hit you!";
-    private static string gameOverString = "Game Over!";
+    [SerializeField] private static string startGameString = "Squeeze Both Triggers to Begin!";
+    [SerializeField] private static string instructionsString = "Destroy the asteroids before they hit you!";
+    [SerializeField] private static string gameOverString = "Game Over!";
 
     private static string scoreString = "Score: ";
     private static string livesString = "Lives: ";

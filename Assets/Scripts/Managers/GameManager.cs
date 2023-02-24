@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] InputManager inputManager;
     [SerializeField] Menu menu;
     [SerializeField] EnemySpawn enemySpawn;
-    [SerializeField] GameObject damageOverlay;
+    //[SerializeField] GameObject damageOverlay;
     [SerializeField] AudioSource damageAudioSource;
 
     private int lives;
@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     {
         if (LeftGun != null)
         {
+
             LeftGun.Fire();
         }
         else
@@ -48,11 +49,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private float lastFiredTimeRight = 0;
     public void FireRightGun()
     {
+        
         if (RightGun != null)
         {
+
             RightGun.Fire();
+
         }
         else
         {
@@ -69,7 +74,7 @@ public class GameManager : MonoBehaviour
     public void LoseLife()
     {
         lives--;
-        StartCoroutine(DamageCoroutine());
+       // StartCoroutine(DamageCoroutine());
         menu.SetLives(lives);
         if (damageAudioSource != null)
         {
@@ -80,7 +85,7 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
     }
-
+/*
     private IEnumerator DamageCoroutine()
     {
         if (damageOverlay != null)
@@ -90,6 +95,7 @@ public class GameManager : MonoBehaviour
             damageOverlay.SetActive(false);
         }
     }
+    */
 
     public void GameOver()
     {

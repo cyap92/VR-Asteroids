@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Valve.VR;
 
 public class InputManager : MonoBehaviour
 {
     private GameManager gameManager;
     private bool leftTriggerDown = false;
     private bool rightTriggerDown = false;
+    private bool canFireLeft = true;
+    private bool canFireRight = true;
     public void Start()
     {
         gameManager = GameManager.instance;
@@ -16,31 +17,38 @@ public class InputManager : MonoBehaviour
             Debug.LogError("GameManager not found");
         }
     }
-
+    
     void Update()
     {
-        //Debug.Log("Left: " + leftTriggerDown + " Right: " + rightTriggerDown);
-        if (SteamVR_Actions._default.GrabPinch.GetStateUp(SteamVR_Input_Sources.LeftHand))
+        if (OVRInput.Get(OVRInput.RawButton.LIndexTrigger))
         {
-            leftTriggerDown = false;
-            //Debug.Log("Grab Pinch Left Up");
-        }
-        if (SteamVR_Actions._default.GrabPinch.GetStateDown(SteamVR_Input_Sources.LeftHand))
-        {
-            gameManager.FireLeftGun();
             leftTriggerDown = true;
-            //Debug.Log("Grab Pinch Left Down");
+            if (canFireLeft)
+            {
+                gameManager.FireLeftGun();             
+                canFireLeft = false;
+                //Debug.Log("Grab Pinch Left Down");
+            }
         }
-        if (SteamVR_Actions._default.GrabPinch.GetStateUp(SteamVR_Input_Sources.RightHand))
+        if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger))
         {
-            rightTriggerDown = false;
-            //Debug.Log("Grab Pinch Right Up");
-        }
-        if (SteamVR_Actions._default.GrabPinch.GetStateDown(SteamVR_Input_Sources.RightHand))
-        {
-            gameManager.FireRightGun();
             rightTriggerDown = true;
-            //Debug.Log("Grab Pinch Right Down");
+            if (canFireRight)
+            {
+                gameManager.FireRightGun();
+                canFireRight = false;
+                //Debug.Log("Grab Pinch Right Down");
+            }
+        }
+        if (!OVRInput.Get(OVRInput.RawButton.RIndexTrigger))
+        {
+            canFireRight = true;
+            rightTriggerDown = false;
+        }
+        if (!OVRInput.Get(OVRInput.RawButton.LIndexTrigger))
+        {
+            canFireLeft = true;
+            leftTriggerDown = false;
         }
         if (!gameManager.isPlaying && rightTriggerDown && leftTriggerDown)
         {
@@ -51,5 +59,6 @@ public class InputManager : MonoBehaviour
         {
             Application.Quit();
         }
-    }  
+    }
+    
 }
