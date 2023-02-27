@@ -14,6 +14,10 @@ public class EnemySpawn : MonoBehaviour
     public float MinTimeBetweenSpawns = 0;
     public float MaxTimeBetweenSpawns = 1f;
 
+    public List<GameObject> pooledEnemies;
+    public int amountToPool = 20;
+    
+
     private GameManager gameManager;
 
     public void Start()
@@ -23,24 +27,46 @@ public class EnemySpawn : MonoBehaviour
         {
             Debug.LogError("GameManager not found");
         }
+
+        pooledEnemies = new List<GameObject>();
+        GameObject tmp;
+        for (int i = 0; i < amountToPool; i++)
+        {
+            tmp = Instantiate(EnemyPrefabs[(int)Mathf.Round(Random.Range(0, EnemyPrefabs.Length - 1))]);
+            tmp.SetActive(false);
+            pooledEnemies.Add(tmp);
+            tmp.transform.parent = transform;
+        }
+        
     }
 
     public void SpawnEnemy()
     {
         //Debug.Log("Spawn Enemy");
-        int enemyNum = (int)Mathf.Round(Random.Range(0, EnemyPrefabs.Length - 1));
+        //int enemyNum = (int)Mathf.Round(Random.Range(0, EnemyPrefabs.Length - 1));
 
-        GameObject enemyGO = Instantiate(EnemyPrefabs[enemyNum]);
+        //GameObject enemyGO = Instantiate(EnemyPrefabs[enemyNum]);
+        GameObject enemyGO = GetPooledEnemy();
         Enemy enemy = enemyGO.GetComponent<Enemy>();
         float scale = Random.Range(.75f, 2f);
-        enemy.transform.localScale = new Vector3(enemy.transform.localScale.x*scale, enemy.transform.localScale.y * scale, enemy.transform.localScale.z * scale);
         enemy.transform.localRotation = Random.rotation;
         Rigidbody enemyRigidBody = enemy.GetComponent<Rigidbody>();
         enemyRigidBody.angularVelocity = new Vector3(Random.Range(-1f,1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-        enemy.transform.parent = transform;
         enemy.transform.position = new Vector3(Random.Range(SpawnZone.bounds.min.x, SpawnZone.bounds.max.x), Random.Range(SpawnZone.bounds.min.y, SpawnZone.bounds.max.y), Random.Range(SpawnZone.bounds.min.z, SpawnZone.bounds.max.z));
         enemy.transform.localRotation = transform.localRotation;
-        
+        enemyGO.SetActive(true);
+    }
+
+    public GameObject GetPooledEnemy()
+    {
+        for (int i = 0; i < amountToPool; i++)
+        {
+            if (!pooledEnemies[i].activeInHierarchy)
+            {
+                return pooledEnemies[i];
+            }
+        }
+        return null;
     }
 
     public IEnumerator SpawnEnemies(int enemies)
@@ -64,7 +90,7 @@ public class EnemySpawn : MonoBehaviour
     {
         for(int i =0; i <transform.childCount; i++)
         {
-            Destroy(transform.GetChild(i).gameObject);
+            transform.GetChild(i).gameObject.SetActive(false);
         }
     }
 }

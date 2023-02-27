@@ -18,14 +18,15 @@ public class Projectile : MonoBehaviour
 
     private void OnEnable()
     {
-
-        
         StartCoroutine(DestroyAfterSeconds(lifetime));
     }
 
     private void Update()
     {
-        transform.Translate(Vector3.back*  ShotSpeed);
+        if (gameObject.activeSelf)
+        {
+            transform.Translate(Vector3.back * ShotSpeed);
+        }
         /*
         if (targetLineSet)
         {
@@ -37,14 +38,15 @@ public class Projectile : MonoBehaviour
     IEnumerator DestroyAfterSeconds(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

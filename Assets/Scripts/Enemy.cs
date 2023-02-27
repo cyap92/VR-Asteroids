@@ -41,12 +41,12 @@ public class Enemy : MonoBehaviour
         {
             gameManager.ScorePoints(1);
             Explode();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         if (other.tag == "Platform")
         {
             gameManager.LoseLife();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 

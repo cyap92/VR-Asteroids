@@ -378,7 +378,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh53118
+  m_Name: pb_Mesh22002
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -542,7 +542,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh53184
+  m_Name: pb_Mesh22048
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -706,7 +706,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh53212
+  m_Name: pb_Mesh22064
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1173,6 +1173,7 @@ MonoBehaviour:
   menu: {fileID: 1314431598}
   enemySpawn: {fileID: 873244736}
   damageAudioSource: {fileID: 510093439}
+  lives: 999
 --- !u!4 &510093438
 Transform:
   m_ObjectHideFlags: 0
@@ -2052,6 +2053,8 @@ MonoBehaviour:
   SpawnZone: {fileID: 873244737}
   MinTimeBetweenSpawns: 0.25
   MaxTimeBetweenSpawns: 1
+  pooledEnemies: []
+  amountToPool: 20
 --- !u!65 &873244737
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3652,7 +3655,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh53018
+  m_Name: pb_Mesh21942
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3816,7 +3819,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh53226
+  m_Name: pb_Mesh22078
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

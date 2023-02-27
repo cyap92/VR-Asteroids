@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     //[SerializeField] GameObject damageOverlay;
     [SerializeField] AudioSource damageAudioSource;
 
-    private int lives;
+    [SerializeField] private int lives = 10;
     private int score;
 
     [NonSerialized]
@@ -120,7 +120,6 @@ public class GameManager : MonoBehaviour
         }
         //Debug.Log("Start Game");
         isPlaying = true;
-        lives = 10;
         score = 0;
         menu.SetLives(lives);
         menu.SetScore(score);
